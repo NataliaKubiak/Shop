@@ -9,14 +9,15 @@ public class MainTest {
         Product chips = new Product("Chips", 5.99, Category.SNACKS);
         Product pepsi = new Product("Pepsi", 3.99, Category.BEVERAGES);
 
-        StoreGroceries shop = new StoreGroceries();
+        DisplayableProducts shop = new StoreGroceries();
         shop.addProductWithAmount(cucumber, 5)
                 .addProductWithAmount(apple, 15)
                 .addProductWithAmount(beefSteak, 7)
                 .addProductWithAmount(floorCleaner, 10)
                 .addProductWithAmount(chips, 20)
-                .addProductWithAmount(pepsi, 8)
-                .showFullProductsInfo();
+                .addProductWithAmount(pepsi, 8);
+        shop.showFullProductsInfo();
+        shop.showProductsWithAmounts();
 
         Cart cart1 = new Cart();
         int chipsAmount = 1;

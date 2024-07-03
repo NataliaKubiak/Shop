@@ -1,6 +1,6 @@
 
 //тут могла бы быть имплементация продажи товаров оптом
-public class StoreWholesale implements Sellable{
+public class StoreWholesale implements DisplayableProducts {
 
     @Override
     public StoreWholesale addProductWithAmount(Product product, int amount) {
@@ -19,6 +19,16 @@ public class StoreWholesale implements Sellable{
 
     @Override
     public void cancelPurchase(Product product, int amount) {
+
+    }
+
+    @Override
+    public void showProductsWithAmounts() {
+
+    }
+
+    @Override
+    public void showFullProductsInfo() {
 
     }
 }

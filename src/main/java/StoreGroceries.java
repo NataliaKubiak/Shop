@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class StoreGroceries implements Sellable, Showable {
+public class StoreGroceries implements DisplayableProducts {
 
     //Product and Integer = quantity
     private Map<Product, Integer> allProducts = new HashMap<>();
@@ -63,7 +63,7 @@ public class StoreGroceries implements Sellable, Showable {
     @Override
     public void showFullProductsInfo() {
         System.out.println("Full Info about available Products in the Shop:");
-        allProducts.forEach((key, value) -> System.out.printf("%s (available %d psc)\n- Price: %.2f,\n- Rating: %d,\n- Category: %s\n",
+        allProducts.forEach((key, value) -> System.out.printf("%s (available %d pcs)\n- Price: %.2f,\n- Rating: %d,\n- Category: %s\n",
                 key.getName(), value, key.getPrice(), key.getRating(), key.getCategory()));
     }
 }

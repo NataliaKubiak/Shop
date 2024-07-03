@@ -1,6 +1,6 @@
 
 //тут могла бы быть имплементация продажи штук для дома типо Икеи
-public class StoreHomeStuff implements Sellable{
+public class StoreHomeStuff implements DisplayableProducts {
     @Override
     public StoreHomeStuff addProductWithAmount(Product product, int amount) {
         return null;
@@ -18,6 +18,16 @@ public class StoreHomeStuff implements Sellable{
 
     @Override
     public void cancelPurchase(Product product, int amount) {
+
+    }
+
+    @Override
+    public void showProductsWithAmounts() {
+
+    }
+
+    @Override
+    public void showFullProductsInfo() {
 
     }
 }
