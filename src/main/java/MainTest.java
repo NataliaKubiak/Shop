@@ -1,13 +1,19 @@
+import shop.DisplayableProducts;
+import shop.store.StoreGroceries;
+import product.BaseProduct;
+import product.Category;
+import shop.cart.Cart;
+
 public class MainTest {
     public static void main(String[] args) {
-        Product cucumber = new Product("Cucumber", 2.50, Category.VEGETABLES);
+        BaseProduct cucumber = new BaseProduct("Cucumber", 2.50, Category.VEGETABLES);
         cucumber.setRating(3);
-        Product milk = new Product("Milk", 3.79, Category.DAIRY);
-        Product apple = new Product("Apple", 1.59, Category.FRUITS);
-        Product beefSteak = new Product("Beef Steak", 13.70, Category.MEAT);
-        Product floorCleaner = new Product("Universal Floor Cleaner", 8.29, Category.CLEANINGPRODUCTS);
-        Product chips = new Product("Chips", 5.99, Category.SNACKS);
-        Product pepsi = new Product("Pepsi", 3.99, Category.BEVERAGES);
+        BaseProduct milk = new BaseProduct("Milk", 3.79, Category.DAIRY);
+        BaseProduct apple = new BaseProduct("Apple", 1.59, Category.FRUITS);
+        BaseProduct beefSteak = new BaseProduct("Beef Steak", 13.70, Category.MEAT);
+        BaseProduct floorCleaner = new BaseProduct("Universal Floor Cleaner", 8.29, Category.WASHING_POWDER);
+        BaseProduct chips = new BaseProduct("Chips", 5.99, Category.SNACKS);
+        BaseProduct pepsi = new BaseProduct("Pepsi", 3.99, Category.SODA);
 
         DisplayableProducts shop = new StoreGroceries();
         shop.addProductWithAmount(cucumber, 5)
@@ -31,10 +37,9 @@ public class MainTest {
         cart1.showFullProductsInfo();
 
         cart1.returnProduct(chips, 1);
-        cart1.showFullProductsInfo();
-
-        cart1.returnProduct(milk, -2);
         cart1.showProductsWithAmounts();
+
+
         cart1.makeOrder();
 
         System.out.println("HERE!");

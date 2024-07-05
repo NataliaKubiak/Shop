@@ -1,23 +1,27 @@
+package shop.store;
+
+import product.BaseProduct;
+import shop.DisplayableProducts;
 
 //тут могла бы быть имплементация продажи штук для дома типо Икеи
 public class StoreHomeStuff implements DisplayableProducts {
     @Override
-    public StoreHomeStuff addProductWithAmount(Product product, int amount) {
+    public StoreHomeStuff addProductWithAmount(BaseProduct product, int amount) {
         return null;
     }
 
     @Override
-    public StoreHomeStuff deleteProduct(Product product) {
+    public StoreHomeStuff deleteProduct(BaseProduct product) {
         return null;
     }
 
     @Override
-    public boolean sellProducts(Product product, int amount) {
+    public boolean sellProducts(BaseProduct product, int amount) {
         return false;
     }
 
     @Override
-    public void cancelPurchase(Product product, int amount) {
+    public void cancelPurchase(BaseProduct product, int amount) {
 
     }
 

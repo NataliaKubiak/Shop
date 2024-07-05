@@ -1,0 +1,7 @@
+package product;
+
+public enum Category {
+    MEAT, DAIRY, VEGETABLES, FRUITS, SNACKS,
+    SODA, WINE, BEER, WATER,
+    WASHING_POWDER, DISHWASHER_PILLS, SOAP, SHAMPOO
+}

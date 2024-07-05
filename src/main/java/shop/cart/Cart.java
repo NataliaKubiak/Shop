@@ -1,28 +1,31 @@
+package shop.cart;
+
+import product.BaseProduct;
+import shop.Showable;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Cart implements Showable {
-    private Map<Product, Integer> cartProducts = new HashMap<>();
+    private Map<BaseProduct, Integer> cartProducts = new HashMap<>();
     private double totalPrice;
 
-    //ПРОВЕРЕНЫ все кейсы, если продукт вышел из магазина - то все ок с количеством и нам остается его только добавить в корзину
-    public Cart addProductWithAmount(Product product, int amount) {
+    public Cart addProductWithAmount(BaseProduct product, int amount) {
         if (cartProducts.containsKey(product)) {
             int currentAmount = cartProducts.get(product);
             cartProducts.put(product, currentAmount + amount);
-            System.out.println("[INFO][CART] Product '" + product.getName() + "' was ADDED to Cart. Current amount: " + (currentAmount + amount) + " pcs");
+            System.out.println("[INFO][CART] Product '" + product.getName() + "' was ADDED to shop.purchase.Cart. Current amount: " + (currentAmount + amount) + " pcs");
         } else {
             cartProducts.put(product, amount);
-            System.out.println("[INFO][CART] Product '" + product.getName() + "' was ADDED to Cart. Current amount: " + amount + " pcs");
+            System.out.println("[INFO][CART] Product '" + product.getName() + "' was ADDED to shop.purchase.Cart. Current amount: " + amount + " pcs");
         }
         calculateTotalPrice();
         return this;
     }
 
-    //ПРОВЕРИЛА все кейсы
-    public boolean returnProduct(Product product, int amount) {
+    public boolean returnProduct(BaseProduct product, int amount) {
         if (amount <= 0) {
-            System.out.println("[INFO][CART] '" + product.getName() + "' was NOT REMOVED from your Cart. Amount can't be negative or 0");
+            System.out.println("[INFO][CART] '" + product.getName() + "' was NOT REMOVED from your shop.purchase.Cart. Amount can't be negative or 0");
             return false;
         }
         if (cartProducts.containsKey(product)) {
@@ -32,10 +35,10 @@ public class Cart implements Showable {
 
                 if (updatedAmount == 0) {
                     cartProducts.remove(product);
-                    System.out.println("[INFO][CART] Product '" + product.getName() + "' was REMOVED from your Cart.");
+                    System.out.println("[INFO][CART] Product '" + product.getName() + "' was REMOVED from your shop.purchase.Cart.");
                 } else {
                     cartProducts.put(product, updatedAmount);
-                    System.out.println("[INFO][CART] Product '" + product.getName() + "' was partly REMOVED from your Cart. Current amount: " + updatedAmount + " pcs");
+                    System.out.println("[INFO][CART] Product '" + product.getName() + "' was partly REMOVED from your shop.purchase.Cart. Current amount: " + updatedAmount + " pcs");
                 }
                 calculateTotalPrice();
                 return true;
@@ -44,15 +47,15 @@ public class Cart implements Showable {
                 return false;
             }
         } else {
-            System.out.println("[INFO][CART] Product '" + product.getName() + "' is not in the Cart");
+            System.out.println("[INFO][CART] Product '" + product.getName() + "' is not in the shop.purchase.Cart");
             return false;
         }
     }
 
     private void calculateTotalPrice() {
         totalPrice = 0;
-        for (Map.Entry<Product, Integer> entry : cartProducts.entrySet()) {
-            Product product = entry.getKey();
+        for (Map.Entry<BaseProduct, Integer> entry : cartProducts.entrySet()) {
+            BaseProduct product = entry.getKey();
             int quantity = entry.getValue();
             double productPrice = product.getPrice();
 
@@ -60,6 +63,7 @@ public class Cart implements Showable {
         }
     }
 
+    //when we call this method shop.order.Order object creates
     public void makeOrder() {
         cartProducts.clear();
         totalPrice = 0;
@@ -74,9 +78,9 @@ public class Cart implements Showable {
     @Override
     public void showProductsWithAmounts() {
         if (cartProducts.isEmpty()) {
-            System.out.println("Cart is empty");
+            System.out.println("shop.purchase.Cart is empty");
         } else {
-            System.out.println("Cart has following items:");
+            System.out.println("shop.purchase.Cart has following items:");
             cartProducts.forEach((key, value) -> System.out.println(key.getName() + ": " + value + " pcs"));
             showTotalPrice();
         }
@@ -85,10 +89,10 @@ public class Cart implements Showable {
     @Override
     public void showFullProductsInfo() {
         if (cartProducts.isEmpty()) {
-            System.out.println("Cart is empty");
+            System.out.println("shop.purchase.Cart is empty");
         } else {
-            System.out.println("Full Info about your Cart:");
-            cartProducts.forEach((key, value) -> System.out.printf("%s (%d psc)\n- Price per one: %.2f,\n- Rating: %d,\n- Category: %s\n",
+            System.out.println("Full Info about your shop.purchase.Cart:");
+            cartProducts.forEach((key, value) -> System.out.printf("%s (%d psc)\n- Price per one: %.2f,\n- Rating: %d,\n- product.Category: %s\n",
                     key.getName(), value, key.getPrice(), key.getRating(), key.getCategory()));
             showTotalPrice();
         }

@@ -1,20 +1,25 @@
+package shop.store;
+
+import product.BaseProduct;
+import shop.DisplayableProducts;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class StoreGroceries implements DisplayableProducts {
 
     //Product and Integer = quantity
-    private Map<Product, Integer> allProducts = new HashMap<>();
+    private Map<BaseProduct, Integer> allProducts = new HashMap<>();
 
     @Override
-    public StoreGroceries addProductWithAmount(Product product, int amount) {
+    public StoreGroceries addProductWithAmount(BaseProduct product, int amount) {
         allProducts.put(product, amount);
         System.out.println("[INFO][SHOP] Product '" + product.getName() + "' (" + amount + " pcs) was ADDED to Shop Warehouse");
         return this;
     }
 
     @Override
-    public StoreGroceries deleteProduct(Product product) {
+    public StoreGroceries deleteProduct(BaseProduct product) {
         if (allProducts.containsKey(product)) {
             allProducts.remove(product);
             System.out.println("[INFO][SHOP] Product '" + product.getName() + "' was REMOVED from Shop Warehouse");
@@ -25,7 +30,7 @@ public class StoreGroceries implements DisplayableProducts {
     }
 
     @Override
-    public boolean sellProducts(Product product, int amount) {
+    public boolean sellProducts(BaseProduct product, int amount) {
         if (amount <= 0) {
             System.out.println("[INFO][SHOP] Amount for '" + product.getName() + "' can't be negative or 0");
             return false;
@@ -48,7 +53,7 @@ public class StoreGroceries implements DisplayableProducts {
     }
 
     @Override
-    public void cancelPurchase(Product product, int amount) {
+    public void cancelPurchase(BaseProduct product, int amount) {
         int availableAmount = allProducts.get(product);
         allProducts.put(product, availableAmount + amount);
         System.out.println("[INFO][SHOP] Purchase of '" + product.getName() + "' (" + amount + " pcs) was CANCELLED. Now Available amount in the shop: " + (availableAmount + amount) + " pcs");

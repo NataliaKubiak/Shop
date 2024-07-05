@@ -1,13 +1,15 @@
+package product;
+
 import java.util.Objects;
 
-public class Product {
+public class BaseProduct {
 
     private String name;
     private double price;
     private int rating;
     private Category category;
 
-    public Product(String name, double price, Category category) {
+    public BaseProduct(String name, double price, Category category) {
         this.name = name;
         if (price <= 0) {
             throw new IllegalArgumentException("Price can't be negative or 0");
@@ -15,6 +17,11 @@ public class Product {
             this.price = price;
         }
         this.category = category;
+    }
+
+    public BaseProduct(String name, double price, Category category, int rating) {
+        this(name, price, category);
+        this.rating = rating;
     }
 
     public void setRating(int rating) {
@@ -56,7 +63,7 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Product product = (Product) o;
+        BaseProduct product = (BaseProduct) o;
         return Double.compare(getPrice(), product.getPrice()) == 0 && getRating() == product.getRating() && Objects.equals(getName(), product.getName()) && getCategory() == product.getCategory();
     }
 
